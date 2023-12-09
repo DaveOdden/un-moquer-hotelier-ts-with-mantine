@@ -8,6 +8,7 @@ import {
 	IconBook2,
 	IconUsers,
 	IconBed,
+	IconBuildingArch,
 } from '@tabler/icons-react'
 import { MantineLogo } from '@mantinex/mantine-logo'
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -30,7 +31,7 @@ const navData = [
 	{ icon: IconHome2, label: 'Home', key: 'overview', to: 'overview' },
 	{ icon: IconBook2, label: 'Bookings', key: 'bookings', to: 'bookings' },
 	{ icon: IconUsers, label: 'Guests', key: 'guests', to: 'guests' },
-	{ icon: IconBed, label: 'Rooms', key: 'rooms', to: 'rooms' },
+	{ icon: IconBuildingArch, label: 'Rooms', key: 'rooms', to: 'rooms' },
 	{ icon: IconSettings, label: 'Settings', key: 'settings', to: 'settings' },
 ]
 
@@ -62,7 +63,7 @@ export const AppNav = () => {
 
 	return (
 		<nav className={classes.navbar}>
-			<Center>
+			<Center mt="5">
 				<MantineLogo type="mark" size={30} />
 			</Center>
 

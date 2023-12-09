@@ -1,6 +1,6 @@
 .navbar {
 	width: rem(80px);
-	height: rem(750px);
+	height: 100%;
 	padding: var(--mantine-spacing-md);
 	display: flex;
 	flex-direction: column;
@@ -16,9 +16,6 @@
 	width: rem(50px);
 	height: rem(50px);
 	border-radius: var(--mantine-radius-md);
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
 
 	&:hover {

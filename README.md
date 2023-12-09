@@ -1,30 +1,15 @@
-# React + TypeScript + Vite
+# Un Moquer Hotelier + TypeScript + Mantine
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![bookings](./docs/un-moquer-hotelier--guests.png)
 
-Currently, two official plugins are available:
+## Tooling List
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-	// other rules...
-	parserOptions: {
-		ecmaVersion: 'latest',
-		sourceType: 'module',
-		project: ['./tsconfig.json', './tsconfig.node.json'],
-		tsconfigRootDir: __dirname,
-	},
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- [Yarn](https://yarnpkg.com/) - Package Manager
+- [Vite](https://vitejs.dev/) - Front End Build Tool
+- [TypeScript](https://www.typescriptlang.org/) - Strict Typing for JavaScript
+- [React](https://react.dev/) - Front End Composition
+- [React Router](https://github.com/remix-run/react-router#readme) - SPA Router
+- [React Query](https://tanstack.com/query/v4/docs/react/overview) - Data Fetching
+- [Mantine UI Library](https://mantine.dev/) - UI Components and Helpers
+- [Mantine Data Table](https://icflorescu.github.io/mantine-datatable/) - More Robust Data Table
+- [Lodash](https://lodash.com/) - Helper Functions
