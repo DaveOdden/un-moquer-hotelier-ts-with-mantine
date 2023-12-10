@@ -38,11 +38,16 @@ export const Guests = () => {
 				position="right"
 				opened={singleGuest !== ''}
 				onClose={closeDetail}
-				title="Guest Detail">
+				withCloseButton={false}>
 				<GuestDetail guestId={singleGuest} />
 			</Drawer>
-			<Modal opened={modalOpened} onClose={closeModal} title="New Guest" size="lg">
-				<NewGuest />
+			<Modal
+				size={500}
+				opened={modalOpened}
+				onClose={closeModal}
+				title={<span className={classes.modalTitle}>New Guest</span>}
+				transitionProps={{ transition: 'pop-top-right' }}>
+				<NewGuest closeModal={closeModal} />
 			</Modal>
 		</>
 	)

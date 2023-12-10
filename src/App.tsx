@@ -1,18 +1,18 @@
 import { Routes, Route, Outlet } from 'react-router-dom'
-import { useDisclosure } from '@mantine/hooks'
+//import { useDisclosure } from '@mantine/hooks'
 import { AppShell } from '@mantine/core'
 
-import { AppNav } from './components/AppNav'
+import { AppNav } from './components/AppNav/AppNav'
 import { Guests } from './features/Guests/Guests'
 import '@mantine/core/styles.layer.css'
 import 'mantine-datatable/styles.layer.css'
 import './App.css'
 
 const App = () => {
-	const [opened, { toggle }] = useDisclosure()
+	//const [opened, { toggle }] = useDisclosure()
 
 	return (
-		<AppShell navbar={{ width: 80, breakpoint: 'sm', collapsed: { mobile: !opened } }} padding="md">
+		<AppShell navbar={{ width: 80, breakpoint: 'sm', collapsed: { mobile: false } }} padding="md">
 			<AppShell.Navbar>
 				<AppNav />
 			</AppShell.Navbar>
