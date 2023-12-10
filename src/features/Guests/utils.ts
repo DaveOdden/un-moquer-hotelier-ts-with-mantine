@@ -11,8 +11,8 @@ Object.typedKeys = Object.keys as any
 export const findMatches = (record: IGuest, searchQuery: string) => {
 	return Object.typedKeys(record).some((k: keyof IGuest) => {
 		// search first level properties
-		if (record && record[k] && record[k] instanceof String) {
-			return (record[k] as string).toLowerCase().includes(searchQuery.toLowerCase())
+		if (record && record[k]) {
+			return (record[k] as string).toString().toLowerCase().includes(searchQuery.toLowerCase())
 		}
 
 		// search in address
@@ -26,4 +26,27 @@ export const findMatches = (record: IGuest, searchQuery: string) => {
 			}
 		}
 	})
+}
+
+export const convertFormDataForAPI = (formData: any) => {
+	return {
+		firstName: formData.firstName,
+		lastName: formData.lastName,
+		phone: formData.phone,
+		email: formData.email,
+		dob: formData.dob,
+		licenseNumber: formData.licenseNumber,
+		address: {
+			address1: formData.address1,
+			address2: formData.address2,
+			city: formData.city,
+			state: formData.state,
+			zip: formData.zip,
+		},
+		currentlyAssignedRoom: '',
+		status: 'good',
+		storedCreditCard: {},
+		history: [],
+		signUpDate: new Date(),
+	}
 }

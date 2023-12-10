@@ -6,7 +6,7 @@ import sortBy from 'lodash/sortBy'
 import filter from 'lodash/filter'
 import { findMatches } from './utils'
 
-export const GuestTable = (props: renderProps) => {
+export const GuestTable = (props: GuestTableProps) => {
 	const { showGuestDetail, searchQuery } = props
 	const guests = useGuests()
 	const [sortStatus, setSortStatus] = useState<DataTableSortStatus<any>>({
@@ -23,6 +23,7 @@ export const GuestTable = (props: renderProps) => {
 
 	return (
 		<DataTable
+			style={{ height: 'calc(100vh - 88px)' }}
 			verticalSpacing="md"
 			withTableBorder
 			borderRadius="lg"
@@ -44,18 +45,17 @@ export const GuestTable = (props: renderProps) => {
 					title: 'Last Name',
 					sortable: true,
 				},
-				{
-					accessor: 'email',
-				},
+				{ accessor: 'email' },
 				{ accessor: 'dob' },
 			]}
 			onRowClick={({ record: { _id } }) => showGuestDetail(_id)}
 			idAccessor="_id"
+			{...{ stickyHeader: true }}
 		/>
 	)
 }
 
-interface renderProps {
+interface GuestTableProps {
 	showGuestDetail: React.Dispatch<React.SetStateAction<any>>
 	searchQuery: string
 }
