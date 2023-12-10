@@ -1,4 +1,4 @@
-import { IGuest, IGuestAddress } from './types'
+import { IGuest, IGuestAddress } from '../../utils/types'
 
 declare global {
 	interface ObjectConstructor {

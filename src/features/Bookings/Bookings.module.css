@@ -1,0 +1,18 @@
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+h2 {
+  margin: .5rem 0;
+  font-size: 1.5rem;
+}
+
+.detail {
+  margin-top: -1rem;
+}
+
+.modalTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+}

@@ -1,3 +1,21 @@
+interface IObjectId {
+	_id: string
+}
+
+export interface IBooking {
+	_id: string
+	guest: IObjectId
+	room: IObjectId
+	checkinDate: string
+	checkoutDate: string
+	paid: true
+	billing: {
+		rate: number
+		days: number
+		additional: number
+	}
+}
+
 export interface IGuest {
 	_id?: string
 	firstName?: string
@@ -12,6 +30,7 @@ export interface IGuest {
 	signUpDate?: string
 	status?: string
 	storedCreditCard?: [object]
+	fullName?: string
 }
 
 export interface IGuestAddress {
@@ -19,4 +38,14 @@ export interface IGuestAddress {
 	city: string
 	state: string
 	zip: string
+}
+
+export interface IRoom {
+	_id: number
+	roomNum: number
+	status: {
+		occupied: boolean
+		needsCleaning: boolean
+	}
+	datesBooked: string[]
 }
