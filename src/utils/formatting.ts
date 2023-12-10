@@ -1,3 +1,5 @@
+import dayjs, { Dayjs } from 'dayjs'
+
 export const phoneFormat = (input: string) => {
 	//returns (###) ###-####
 	input = input.replace(/\D/g, '')
@@ -12,4 +14,12 @@ export const phoneFormat = (input: string) => {
 		input = input.slice(0, 9) + '-' + input.slice(9)
 	}
 	return input
+}
+
+export const writtenOutDate = (date: Dayjs | string) => {
+	return dayjs(date).format('dddd - MMMM DD, YYYY')
+}
+
+export const writtenOutDateTime = (date: Dayjs | string) => {
+	return dayjs(date).format('ddd, MMM D, YYYY h:mm A')
 }

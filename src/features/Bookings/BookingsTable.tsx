@@ -1,25 +1,27 @@
 import { useState } from 'react'
-import { useGuests } from '../../hooks/useGuestsQuery'
+import { useAllFeatures } from '../../hooks/useAllQuery'
 import { LoadingOverlay } from '@mantine/core'
 import { DataTable, type DataTableSortStatus } from 'mantine-datatable'
 import sortBy from 'lodash/sortBy'
 import filter from 'lodash/filter'
 import { findMatches } from './utils'
+import { getAdditionalDataForEachBooking } from './utils'
 import { TABLE_HEIGHT } from 'src/utils/constants'
 
-export const GuestTable = (props: GuestTableProps) => {
+export const BookingsTable = (props: GuestTableProps) => {
 	const { showGuestDetail, searchQuery } = props
-	const guests = useGuests()
+	const [guests, bookings, rooms] = useAllFeatures()
+	const aggregatedData = getAdditionalDataForEachBooking(guests, bookings, rooms)
 	const [sortStatus, setSortStatus] = useState<DataTableSortStatus<any>>({
 		columnAccessor: 'lastName',
 		direction: 'asc',
 	})
 
-	const sortedData = sortBy(guests.data, sortStatus.columnAccessor)
+	const sortedData = sortBy(aggregatedData, sortStatus.columnAccessor)
 	const records = sortStatus.direction === 'desc' ? sortedData.reverse() : sortedData
 	const sortedAndFilteredData = filter(records, (record) => findMatches(record, searchQuery))
 
-	if (guests.isPending)
+	if (bookings.isPending)
 		return <LoadingOverlay visible={true} zIndex={1000} overlayProps={{ radius: 'sm', blur: 2 }} />
 
 	return (
@@ -34,20 +36,21 @@ export const GuestTable = (props: GuestTableProps) => {
 			onSortStatusChange={setSortStatus}
 			columns={[
 				{
-					width: '10rem',
-					accessor: 'firstName',
-					title: 'First Name',
-					textAlign: 'right',
+					width: '7rem',
+					accessor: 'room.roomNum',
+					title: 'Room #',
+					textAlign: 'center',
 					sortable: true,
 				},
 				{
-					width: '12rem',
-					accessor: 'lastName',
-					title: 'Last Name',
+					width: '17rem',
+					accessor: 'guest.fullName',
+					title: 'Guest Name',
 					sortable: true,
 				},
-				{ accessor: 'email' },
-				{ accessor: 'dob' },
+				{ accessor: 'checkinDateReadable' },
+				{ accessor: 'checkoutDateReadable' },
+				{ accessor: '_id', title: 'Confirmation #' },
 			]}
 			onRowClick={({ record: { _id } }) => showGuestDetail(_id)}
 			idAccessor="_id"
