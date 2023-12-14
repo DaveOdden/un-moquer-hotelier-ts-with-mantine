@@ -4,11 +4,11 @@ import { LoadingOverlay } from '@mantine/core'
 import { DataTable, type DataTableSortStatus } from 'mantine-datatable'
 import sortBy from 'lodash/sortBy'
 import filter from 'lodash/filter'
-import { findMatches } from './utils'
+import { findMatches, findMatchesByKey } from './utils'
 import { TABLE_HEIGHT } from 'src/utils/constants'
 
 export const GuestTable = (props: GuestTableProps) => {
-	const { showGuestDetail, searchQuery } = props
+	const { showGuestDetail, searchQuery, filterOption } = props
 	const guests = useGuests()
 	const [sortStatus, setSortStatus] = useState<DataTableSortStatus<any>>({
 		columnAccessor: 'lastName',
@@ -17,7 +17,11 @@ export const GuestTable = (props: GuestTableProps) => {
 
 	const sortedData = sortBy(guests.data, sortStatus.columnAccessor)
 	const records = sortStatus.direction === 'desc' ? sortedData.reverse() : sortedData
-	const sortedAndFilteredData = filter(records, (record) => findMatches(record, searchQuery))
+	let sortedAndFilteredData = filter(records, (record) => findMatches(record, searchQuery))
+
+	if (filterOption !== 'all') {
+		sortedAndFilteredData = filter(records, (record) => findMatchesByKey(record, filterOption))
+	}
 
 	if (guests.isPending)
 		return <LoadingOverlay visible={true} zIndex={1000} overlayProps={{ radius: 'sm', blur: 2 }} />
@@ -59,4 +63,5 @@ export const GuestTable = (props: GuestTableProps) => {
 interface GuestTableProps {
 	showGuestDetail: React.Dispatch<React.SetStateAction<any>>
 	searchQuery: string
+	filterOption: string
 }

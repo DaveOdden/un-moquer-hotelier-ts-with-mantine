@@ -1,4 +1,5 @@
 import { IGuest, IGuestAddress } from '../../utils/types'
+import { formatToYMD, isFutureDate } from 'src/utils/formatting'
 
 declare global {
 	interface ObjectConstructor {
@@ -26,6 +27,27 @@ export const findMatches = (record: IGuest, searchQuery: string) => {
 			}
 		}
 	})
+}
+
+export const findMatchesByKey = (record: IGuest, filterOption: string) => {
+	const datesOfStay = record?.datesOfStay
+	if ((filterOption === 'occupants' || filterOption === 'upcoming') && datesOfStay === undefined)
+		return false
+	let todaysDate = formatToYMD(new Date())
+
+	switch (filterOption) {
+		case 'occupants':
+			return datesOfStay?.includes(todaysDate)
+		case 'upcoming':
+			return (
+				!datesOfStay?.includes(todaysDate) &&
+				datesOfStay?.some((element) => isFutureDate(element, todaysDate))
+			)
+		case 'members':
+			return record.member
+		case 'banned':
+			return record.status === 'banned'
+	}
 }
 
 export const convertFormDataForAPI = (formData: any) => {
