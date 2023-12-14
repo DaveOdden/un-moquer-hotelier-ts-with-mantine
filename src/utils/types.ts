@@ -1,3 +1,5 @@
+import { Dayjs } from 'dayjs'
+
 interface IObjectId {
 	_id: string
 }
@@ -31,6 +33,14 @@ export interface IGuest {
 	status?: string
 	storedCreditCard?: [object]
 	fullName?: string
+	datesOfStay?: string[]
+	member?: boolean
+	memberInfo?: IMemberInfo
+}
+
+export interface IMemberInfo {
+	memberSince?: string
+	tier?: string
 }
 
 export interface IGuestAddress {
@@ -48,4 +58,13 @@ export interface IRoom {
 		needsCleaning: boolean
 	}
 	datesBooked: string[]
+}
+
+export interface IHistory {
+	id: string
+	category: string
+	action: string
+	data?: any
+	by: string
+	date?: string | Date | Dayjs
 }

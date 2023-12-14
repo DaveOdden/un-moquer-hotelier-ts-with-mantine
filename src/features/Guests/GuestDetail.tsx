@@ -1,6 +1,8 @@
 import { useGuest } from '../../hooks/useGuestsQuery'
-import { Card, List, Text, Box, Divider } from '@mantine/core'
+import { Badge, Card, List, Text, Box, Divider, Accordion } from '@mantine/core'
 import classes from './Guests.module.css'
+
+import { GuestHistory } from './GuestHistory'
 
 export const GuestDetail = (props: renderProps) => {
 	const { guestId } = props
@@ -8,6 +10,7 @@ export const GuestDetail = (props: renderProps) => {
 
 	return (
 		<Card className={classes.detail}>
+			{guest?.status === 'banned' && <Badge color="red">Banned</Badge>}
 			<h2>
 				{guest?.firstName} {guest?.lastName}
 			</h2>
@@ -17,38 +20,36 @@ export const GuestDetail = (props: renderProps) => {
 			<Box my="xl" pl="md">
 				<List listStyleType="none">
 					<List.Item py="sm">
-						<Text>Phone Number</Text>
 						<Text size="sm" c="dimmed" fw={400}>
-							{guest?.phone}
+							Phone Number
 						</Text>
+						<Text>{guest?.phone}</Text>
 					</List.Item>
 					<List.Item py="sm">
-						<Text>Email</Text>
 						<Text size="sm" c="dimmed" fw={400}>
-							{guest?.email}
+							Email
 						</Text>
+						<Text>{guest?.email}</Text>
 					</List.Item>
 					<List.Item py="sm">
-						<Text>Date of Birth</Text>
 						<Text size="sm" c="dimmed" fw={400}>
-							{guest?.dob}
+							Date of Birth
 						</Text>
+						<Text>{guest?.dob}</Text>
 					</List.Item>
 					<List.Item py="sm">
-						<Text>License Number</Text>
 						<Text size="sm" c="dimmed" fw={400}>
-							{guest?.licenseNumber}
+							License Number
 						</Text>
+						<Text>{guest?.licenseNumber}</Text>
 					</List.Item>
 					<List.Item py="sm">
-						<Text>Address</Text>
 						<Text size="sm" c="dimmed" fw={400}>
-							{guest?.address.address1}
+							Address
 						</Text>
-						<Text size="sm" c="dimmed" fw={400}>
-							{guest?.address.address2}
-						</Text>
-						<Text size="sm" c="dimmed" fw={400}>
+						<Text>{guest?.address.address1}</Text>
+						<Text>{guest?.address.address2}</Text>
+						<Text>
 							{guest?.address.city} {guest?.address.state}
 							{', '}
 							{guest?.address.zip}
@@ -56,17 +57,23 @@ export const GuestDetail = (props: renderProps) => {
 					</List.Item>
 					<Divider my="md" />
 					<List.Item py="sm">
-						<Text size="sm">
-							<Text fw={600} span>
-								Member Since:{' '}
-							</Text>{' '}
-							<Text c="dimmed" span>
-								{guest?.signUpDate}
-							</Text>
+						<Text size="sm" c="dimmed" fw={400}>
+							Member Since
 						</Text>
+						<Text>{guest?.signUpDate}</Text>
 					</List.Item>
 				</List>
 			</Box>
+			{guest?.history.length > 0 && (
+				<Accordion variant="contained">
+					<Accordion.Item value="photos">
+						<Accordion.Control>Guest History</Accordion.Control>
+						<Accordion.Panel pt="lg">
+							<GuestHistory guestId={guest?._id} />
+						</Accordion.Panel>
+					</Accordion.Item>
+				</Accordion>
+			)}
 		</Card>
 	)
 }

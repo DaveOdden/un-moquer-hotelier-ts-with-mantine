@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Flex, Modal, TextInput, Drawer, Button, ActionIcon } from '@mantine/core'
+import { Flex, Modal, TextInput, Drawer, Button, ActionIcon, SegmentedControl } from '@mantine/core'
 import { IconPlus, IconX } from '@tabler/icons-react'
 
 import { GuestTable } from './GuestTable'
@@ -12,6 +12,7 @@ export const Guests = () => {
 	const [singleGuest, setSingleGuest] = useState('')
 	const [modalOpened, setModalOpened] = useState(false)
 	const [filteredText, setFilteredText] = useState('')
+	const [filterOption, setFilterOption] = useState('all')
 
 	const closeDetail = () => setDrawerOpen(false)
 	const openModal = () => setModalOpened(true)
@@ -28,6 +29,20 @@ export const Guests = () => {
 		<>
 			<Flex mb="md" mih={36} justify="space-between" align="center" direction="row">
 				<h1 className={classes.h1}>Guests</h1>
+				<SegmentedControl
+					value={filterOption}
+					onChange={setFilterOption}
+					data={[
+						{ value: 'all', label: 'All' },
+						{ value: 'occupants', label: 'Occupants' },
+						{ value: 'upcoming', label: 'Upcoming' },
+						{ value: 'members', label: 'Star Members' },
+						{ value: 'banned', label: 'Banned' },
+					]}
+					styles={{
+						root: { backgroundColor: '#f5f2f0' },
+					}}
+				/>
 				<Flex mih={36} gap="lg" justify="flex-end" align="center" direction="row">
 					<TextInput
 						w={225}
@@ -52,7 +67,11 @@ export const Guests = () => {
 					</Button>
 				</Flex>
 			</Flex>
-			<GuestTable showGuestDetail={showGuestDetail} searchQuery={filteredText} />
+			<GuestTable
+				showGuestDetail={showGuestDetail}
+				searchQuery={filteredText}
+				filterOption={filterOption}
+			/>
 			<Drawer position="right" opened={drawerOpened} onClose={closeDetail} withCloseButton={false}>
 				<GuestDetail guestId={singleGuest} />
 			</Drawer>

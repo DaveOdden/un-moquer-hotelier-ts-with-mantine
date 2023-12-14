@@ -16,10 +16,22 @@ export const phoneFormat = (input: string) => {
 	return input
 }
 
-export const writtenOutDate = (date: Dayjs | string) => {
+export const writtenOutDate = (date: Dayjs | string | Date) => {
 	return dayjs(date).format('dddd - MMMM DD, YYYY')
 }
 
-export const writtenOutDateTime = (date: Dayjs | string) => {
+export const writtenOutDateTime = (date: Dayjs | string | Date) => {
 	return dayjs(date).format('ddd, MMM D, YYYY h:mm A')
+}
+
+export const formatToYMD = (date: Dayjs | string | Date) => {
+	return dayjs(date).format('YYYY-MM-DD')
+}
+
+export const isFutureDate = (date1: Dayjs | string | Date, date2: Dayjs | string | Date) => {
+	return dayjs(date1).isAfter(date2, 'day')
+}
+
+export const isSame = (date1: Dayjs | string | Date, date2: Dayjs | string | Date) => {
+	return dayjs(date1).isSame(dayjs(date2))
 }
