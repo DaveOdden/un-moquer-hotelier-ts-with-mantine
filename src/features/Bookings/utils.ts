@@ -1,5 +1,5 @@
 import { UseQueryResult } from '@tanstack/react-query'
-import { IBooking, IGuest, IRoom } from 'src/utils/types'
+import { IAggregatedBooking, IBooking, IGuest, IRoom } from 'src/utils/types'
 import { writtenOutDateTime } from 'src/utils/formatting'
 
 declare global {
@@ -19,8 +19,8 @@ export const findMatches = (record: any, searchQuery: string) => {
 	})
 }
 
-const findRoomsRecord = (_rooms: IRoom[], roomId: string | number) => {
-	let selectedRecord: IRoom | {} = {}
+const findRoomsRecord = (_rooms: IRoom[], roomId: string | number): IRoom => {
+	let selectedRecord = <IRoom>{}
 	for (let x = 0; x < _rooms.length; x++) {
 		if (roomId === _rooms[x]._id) {
 			selectedRecord = _rooms[x]
@@ -31,7 +31,7 @@ const findRoomsRecord = (_rooms: IRoom[], roomId: string | number) => {
 }
 
 const findGuestRecord = (_guests: IGuest[], guestId: string) => {
-	let selectedRecord: IGuest | {} = {}
+	let selectedRecord = <IGuest>{}
 	for (let y = 0; y < _guests.length; y++) {
 		if (guestId === _guests[y]._id) {
 			_guests[y].fullName = _guests[y].firstName + ' ' + _guests[y].lastName
@@ -46,8 +46,8 @@ export const getAdditionalDataForEachBooking = (
 	guests: UseQueryResult<any, Error>,
 	bookings: UseQueryResult<any, Error>,
 	rooms: UseQueryResult<any, Error>
-) => {
-	let aggregatedBookings: Array<object> = []
+): IAggregatedBooking[] => {
+	let aggregatedBookings: IAggregatedBooking[] = []
 	if ([guests, bookings, rooms].every((query) => query.isSuccess)) {
 		bookings.data.map((booking: IBooking) => {
 			aggregatedBookings.push({

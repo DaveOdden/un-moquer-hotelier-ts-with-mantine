@@ -50,6 +50,7 @@ export const api = {
 export const apiPaths = {
 	bookings: '/bookings',
 	bookingsByRoom: '/bookingsByRoom',
+	todaysBookings: '/bookingsOnToday',
 	guests: '/guests',
 	guest: '/getOneGuest',
 	autocompleteGuests: '/getGuestsForAutocomplete',
@@ -57,6 +58,7 @@ export const apiPaths = {
 	occupiedRooms: '/getCurrentlyOccupiedRooms',
 	roomByAvailability: '/getRoomsByAvailability',
 	settings: '/settings',
+	checkin: '/checkIn',
 }
 
 interface ApiConfig {

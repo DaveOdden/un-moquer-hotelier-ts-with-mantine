@@ -23,6 +23,20 @@ export const useBookings = () => {
 	})
 }
 
+export const useTodaysBookings = (dateObj: object) => {
+	return useQuery({
+		queryKey: ['todaysbookings'],
+		queryFn: () =>
+			api
+				.request({
+					method: 'GET',
+					endpoint: apiPaths.todaysBookings,
+					payload: dateObj,
+				})
+				.then((res) => res.message),
+	})
+}
+
 export const useArrayOfRoomsBooked = () => {
 	return useQuery({
 		queryKey: ['roomsbooked'],
@@ -81,6 +95,23 @@ export const useDeleteBooking = () => {
 		},
 		onSettled: async () => {
 			queryClient.invalidateQueries({ queryKey: ['bookings'] })
+		},
+	})
+}
+
+export const useCheckIn = () => {
+	const queryClient = useQueryClient()
+	return useMutation({
+		mutationFn: (data: ApiPayload) => {
+			return api.request({
+				method: 'PUT',
+				endpoint: apiPaths.checkin,
+				id: data.id,
+				payload: data,
+			})
+		},
+		onSettled: async () => {
+			queryClient.invalidateQueries({ queryKey: ['todaysbookings'] })
 		},
 	})
 }

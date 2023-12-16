@@ -4,6 +4,22 @@ interface IObjectId {
 	_id: string
 }
 
+export interface IAggregatedBooking {
+	_id: string
+	guest: IGuest
+	room: IRoom
+	checkinDate: string
+	checkoutDate: string
+	paid: true
+	billing: {
+		rate: number
+		days: number
+		additional: number
+	}
+	checkinDateReadable?: string
+	checkoutDateReadable?: string
+}
+
 export interface IBooking {
 	_id: string
 	guest: IObjectId
