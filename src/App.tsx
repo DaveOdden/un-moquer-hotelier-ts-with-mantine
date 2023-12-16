@@ -3,6 +3,7 @@ import { Routes, Route, Outlet } from 'react-router-dom'
 import { AppShell } from '@mantine/core'
 
 import { AppNav } from './components/AppNav/AppNav'
+import { Dashboard } from './features/Dashboard/Dashboard'
 import { Guests } from './features/Guests/Guests'
 import { Bookings } from './features/Bookings/Bookings'
 import '@mantine/core/styles.layer.css'
@@ -20,13 +21,13 @@ const App = () => {
 			<AppShell.Main>
 				<Routes>
 					<Route path="/" element={<MockLayout />}>
-						<Route index element={<h1>Test</h1>} />
-						<Route path="overview" element={<h1>Overview</h1>} />
+						<Route index element={<Dashboard />} />
+						<Route index path="overview" element={<Dashboard />} />
 						<Route path="bookings" element={<Bookings />} />
 						<Route path="guests" element={<Guests />} />
 						<Route path="rooms" element={<h1>Rooms</h1>} />
 						<Route path="settings" element={<h1>Settings</h1>} />
-						<Route path="*" element={<h1>None</h1>} />
+						<Route path="*" element={<h1>404: Page Does Not Exist</h1>} />
 					</Route>
 				</Routes>
 			</AppShell.Main>
