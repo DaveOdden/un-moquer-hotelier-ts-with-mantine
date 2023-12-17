@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { Grid, Transition, Box } from '@mantine/core'
-import ConfettiExplosion from 'react-confetti-explosion'
+import { Grid, Transition } from '@mantine/core'
 import { XIcon } from './XIcon'
 import { OIcon } from './OIcon'
 
@@ -61,11 +60,6 @@ export const GameBoard = () => {
 
 	return (
 		<>
-			{winner && (
-				<Box h="100%" style={{ position: 'absolute', left: '50%', top: '20%' }}>
-					<ConfettiExplosion />
-				</Box>
-			)}
 			<GameCompleted winner={winner} reset={resetGame} />
 			<Transition
 				mounted={winner === null}
