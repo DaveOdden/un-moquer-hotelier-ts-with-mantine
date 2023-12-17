@@ -4,6 +4,8 @@ import { TodaysCheckins } from './TodaysCheckins/TodaysCheckins'
 // import { VerticalCardList } from './TodaysCheckins/+++VerticalCardList'
 import { Alerts } from './Alerts/Alerts'
 import { Tasks } from './Tasks/Tasks'
+import { NoShows } from './NoShows/NoShows'
+import { TicTacToe } from './Games/TicTacToe/TicTacToe'
 
 export const Dashboard: React.FC<{}> = () => {
 	return (
@@ -19,10 +21,16 @@ export const Dashboard: React.FC<{}> = () => {
 					<TodaysCheckins title="Scheduled Checkins" checkedIn={false} />
 				</Grid.Col>
 				<Grid.Col span={3} h="365">
+					<NoShows />
+				</Grid.Col>
+				<Grid.Col span={3} h="365">
 					<Alerts />
 				</Grid.Col>
 				<Grid.Col span={3} h="365">
 					<Tasks />
+				</Grid.Col>
+				<Grid.Col span={3} h="365">
+					<TicTacToe />
 				</Grid.Col>
 			</Grid>
 		</>

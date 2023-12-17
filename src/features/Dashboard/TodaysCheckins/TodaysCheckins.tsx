@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { ScrollArea, Modal, Text, Card, Title } from '@mantine/core'
+import { ScrollArea, Stack, Flex, Modal, Text, Card, Title, ThemeIcon } from '@mantine/core'
+import { IconReceiptOff } from '@tabler/icons-react'
 import { getAdditionalDataForEachBooking } from 'src/features/Bookings/utils'
 import dayjs from 'dayjs'
 
@@ -39,15 +40,33 @@ export const TodaysCheckins: React.FC<{ title: string; checkedIn: boolean }> = (
 			<Title order={3} p="sm" className={classes.cardTitle}>
 				{title}
 			</Title>
-			<ScrollArea h="100%" className={classes.scrollArea}>
-				{filtered.map((checkinRecord) => (
-					<VerticalCheckinCards
-						key={checkinRecord._id}
-						checkinRecord={checkinRecord}
-						initializeModal={initializeModal}
-					/>
-				))}
-			</ScrollArea>
+			{filtered.length > 0 && (
+				<ScrollArea h="100%" className={classes.scrollArea}>
+					{filtered.map((checkinRecord) => (
+						<VerticalCheckinCards
+							key={checkinRecord._id}
+							checkinRecord={checkinRecord}
+							initializeModal={initializeModal}
+						/>
+					))}
+				</ScrollArea>
+			)}
+
+			{!filtered.length && (
+				<Flex h="100%" mt="-lg" justify="center" align="center">
+					<Stack justify="space-around" gap={0}>
+						<ThemeIcon mx="auto" radius="xl" size="xl" mb="lg" color="gray">
+							<IconReceiptOff style={{ width: '70%', height: '70%' }} />
+						</ThemeIcon>
+						<Title order={4} ta="center" c="dimmed" m={0}>
+							No {!checkedIn ? 'Scheduled' : ''} Checkins
+						</Title>
+						<Text size="xs" ta="center" c="dimmed" m={0}>
+							Last Updated: {dayjs().format('h:mm A')}
+						</Text>
+					</Stack>
+				</Flex>
+			)}
 			<Modal.Root
 				size={500}
 				opened={modalOpened}

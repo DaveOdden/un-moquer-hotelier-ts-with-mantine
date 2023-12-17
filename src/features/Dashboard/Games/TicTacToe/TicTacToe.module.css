@@ -1,0 +1,24 @@
+.modalIcon {
+  width:50px;
+  height:50px;
+  color: var(--mantine-color-gray-3);
+  padding: 0
+}
+
+.fullHeight {
+  height: 100%
+}
+.cardTitle {
+  font-size: .78rem !important;
+  text-transform: uppercase;
+  color: var(--mantine-color-gray-6)
+}
+
+.scrollArea {
+  border-top: 1px solid var(--mantine-color-gray-3)
+}
+
+.listItemTitle {
+  margin: 0 !important;
+  font-size: 1.25rem !important
+}
