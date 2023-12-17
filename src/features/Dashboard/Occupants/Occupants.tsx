@@ -1,7 +1,7 @@
 import { Card, Title } from '@mantine/core'
-import classes from './NoShows.module.css'
+import classes from './Occupants.module.css'
 
-export const NoShows = () => {
+export const Occupants = () => {
 	return (
 		<Card
 			shadow="sm"
@@ -12,7 +12,7 @@ export const NoShows = () => {
 			h="100%"
 			className={classes.fullHeight}>
 			<Title order={3} p="sm" className={classes.cardTitle}>
-				No Shows
+				Occupants
 			</Title>
 		</Card>
 	)

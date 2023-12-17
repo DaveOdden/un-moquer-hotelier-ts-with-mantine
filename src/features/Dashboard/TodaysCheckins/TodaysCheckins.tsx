@@ -67,11 +67,7 @@ export const TodaysCheckins: React.FC<{ title: string; checkedIn: boolean }> = (
 					</Stack>
 				</Flex>
 			)}
-			<Modal.Root
-				size={500}
-				opened={modalOpened}
-				onClose={closeModal}
-				transitionProps={{ transition: 'pop-top-right' }}>
+			<Modal.Root size={500} opened={modalOpened} onClose={closeModal}>
 				<Modal.Overlay />
 				<Modal.Content>
 					<Modal.Header>

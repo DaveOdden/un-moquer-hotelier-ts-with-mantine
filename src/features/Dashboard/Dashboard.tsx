@@ -6,6 +6,10 @@ import { Alerts } from './Alerts/Alerts'
 import { Tasks } from './Tasks/Tasks'
 import { NoShows } from './NoShows/NoShows'
 import { TicTacToe } from './Games/TicTacToe/TicTacToe'
+import { WakeUpCalls } from './WakeUpCalls/WakeUpCalls'
+import { Occupants } from './Occupants/Occupants'
+
+const HEIGHT = 365
 
 export const Dashboard: React.FC<{}> = () => {
 	return (
@@ -14,22 +18,28 @@ export const Dashboard: React.FC<{}> = () => {
 				<h1>Dashboard</h1>
 			</Flex>
 			<Grid>
-				<Grid.Col span={3} h="365">
+				<Grid.Col span={3} h={HEIGHT}>
 					<TodaysCheckins title="Today's Checkins" checkedIn={true} />
 				</Grid.Col>
-				<Grid.Col span={3} h="365">
+				<Grid.Col span={3} h={HEIGHT}>
 					<TodaysCheckins title="Scheduled Checkins" checkedIn={false} />
 				</Grid.Col>
-				<Grid.Col span={3} h="365">
+				<Grid.Col span={3} h={HEIGHT}>
 					<NoShows />
 				</Grid.Col>
-				<Grid.Col span={3} h="365">
-					<Alerts />
+				<Grid.Col span={3} h={HEIGHT}>
+					<WakeUpCalls />
 				</Grid.Col>
-				<Grid.Col span={3} h="365">
+				<Grid.Col span={3} h={HEIGHT}>
+					<Occupants />
+				</Grid.Col>
+				<Grid.Col span={3} h={HEIGHT}>
 					<Tasks />
 				</Grid.Col>
-				<Grid.Col span={3} h="365">
+				<Grid.Col span={3} h={HEIGHT}>
+					<Alerts />
+				</Grid.Col>
+				<Grid.Col span={3} h={HEIGHT}>
 					<TicTacToe />
 				</Grid.Col>
 			</Grid>
