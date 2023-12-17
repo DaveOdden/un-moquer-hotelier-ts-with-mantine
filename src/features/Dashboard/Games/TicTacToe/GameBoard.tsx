@@ -20,6 +20,8 @@ export const GameBoard = () => {
 		setXIsNext(true)
 	}
 
+	const calculateDraw = (squares: Array<string | null>) => !squares.includes(null)
+
 	const calculateWinner = (squares: Array<string | null>) => {
 		const lines = [
 			[0, 1, 2],
@@ -39,8 +41,6 @@ export const GameBoard = () => {
 		}
 		return null
 	}
-
-	const calculateDraw = (squares: Array<string | null>) => !squares.includes(null)
 
 	const handleSquareClick = (index: number) => {
 		if (squares[index] || calculateWinner(squares)) return
