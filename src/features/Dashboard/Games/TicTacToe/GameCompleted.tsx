@@ -18,7 +18,7 @@ export const GameCompleted: React.FC<{ winner: string | null; reset(): void }> =
 					{(styles) => (
 						<Box style={styles}>
 							<Flex h="100%" mt="-lg" justify="center" align="center" direction="column">
-								<Title order={3} c="gray.9">
+								<Title order={3} c="dark.4">
 									Winner!
 								</Title>
 								<ThemeIcon radius="xl" size="xl" my="lg">
