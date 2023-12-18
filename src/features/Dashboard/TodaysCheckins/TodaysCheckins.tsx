@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { ScrollArea, Stack, Flex, Modal, Text, Card, Title, ThemeIcon } from '@mantine/core'
+import { asDashboardCard } from '../asDashboardCard'
+import { ScrollArea, Stack, Flex, Modal, Text, Title, ThemeIcon } from '@mantine/core'
 import { IconReceiptOff } from '@tabler/icons-react'
 import { getAdditionalDataForEachBooking } from 'src/features/Bookings/utils'
 import dayjs from 'dayjs'
@@ -11,8 +12,7 @@ import { VerticalCheckinCards } from './CheckinCards'
 import { Checkin } from './CheckinModal'
 import classes from './TodaysCheckins.module.css'
 
-export const TodaysCheckins: React.FC<{ title: string; checkedIn: boolean }> = ({
-	title,
+export const TodaysCheckinsContent: React.FC<{ title: string; checkedIn: boolean }> = ({
 	checkedIn,
 }) => {
 	const startOfToday = dayjs().startOf('day').format()
@@ -36,10 +36,7 @@ export const TodaysCheckins: React.FC<{ title: string; checkedIn: boolean }> = (
 	const closeModal = () => setModalOpened(false)
 
 	return (
-		<Card shadow="sm" padding={0} radius="md" withBorder w="100%" h="100%">
-			<Title order={3} p="sm" className={classes.cardTitle}>
-				{title}
-			</Title>
+		<>
 			{filtered.length > 0 && (
 				<ScrollArea h="100%" className={classes.scrollArea}>
 					{filtered.map((checkinRecord) => (
@@ -83,6 +80,8 @@ export const TodaysCheckins: React.FC<{ title: string; checkedIn: boolean }> = (
 					</Modal.Body>
 				</Modal.Content>
 			</Modal.Root>
-		</Card>
+		</>
 	)
 }
+
+export const TodaysCheckins = asDashboardCard(TodaysCheckinsContent)

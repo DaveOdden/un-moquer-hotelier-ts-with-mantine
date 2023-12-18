@@ -1,19 +1,8 @@
-import { Card, Title } from '@mantine/core'
-import classes from './WakeUpCalls.module.css'
+import { Text } from '@mantine/core'
+import { asDashboardCard } from '../asDashboardCard'
 
-export const WakeUpCalls = () => {
-	return (
-		<Card
-			shadow="sm"
-			padding={0}
-			radius="md"
-			withBorder
-			w="100%"
-			h="100%"
-			className={classes.fullHeight}>
-			<Title order={3} p="sm" className={classes.cardTitle}>
-				Wake-up Calls
-			</Title>
-		</Card>
-	)
+const WakeUpCallsContent: React.FC<{ title: string; checkedIn: boolean }> = ({ title }) => {
+	return <Text>Test</Text>
 }
+
+export const WakeUpCalls = asDashboardCard(WakeUpCallsContent)

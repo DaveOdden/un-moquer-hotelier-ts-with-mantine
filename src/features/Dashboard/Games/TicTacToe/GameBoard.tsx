@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Grid, Transition } from '@mantine/core'
+import { Box, Grid, Transition } from '@mantine/core'
 import { XIcon } from './XIcon'
 import { OIcon } from './OIcon'
 
@@ -59,7 +59,7 @@ export const GameBoard = () => {
 	if (isDraw) return <GameTied isDraw={isDraw} reset={resetGame} />
 
 	return (
-		<>
+		<Box px="lg">
 			<GameCompleted winner={winner} reset={resetGame} />
 			<Transition
 				mounted={winner === null}
@@ -78,6 +78,6 @@ export const GameBoard = () => {
 					</Grid>
 				)}
 			</Transition>
-		</>
+		</Box>
 	)
 }

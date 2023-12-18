@@ -1,7 +1,6 @@
 import { Flex, Grid } from '@mantine/core'
 
 import { TodaysCheckins } from './TodaysCheckins/TodaysCheckins'
-// import { VerticalCardList } from './TodaysCheckins/+++VerticalCardList'
 import { Alerts } from './Alerts/Alerts'
 import { Tasks } from './Tasks/Tasks'
 import { NoShows } from './NoShows/NoShows'
@@ -25,22 +24,22 @@ export const Dashboard: React.FC<{}> = () => {
 					<TodaysCheckins title="Scheduled Checkins" checkedIn={false} />
 				</Grid.Col>
 				<Grid.Col span={3} h={HEIGHT}>
-					<NoShows />
+					<NoShows title="No Shows" />
 				</Grid.Col>
 				<Grid.Col span={3} h={HEIGHT}>
-					<WakeUpCalls />
+					<WakeUpCalls title="Wake-up Calls" />
 				</Grid.Col>
 				<Grid.Col span={3} h={HEIGHT}>
-					<Occupants />
+					<Occupants title="Occupants" />
 				</Grid.Col>
 				<Grid.Col span={3} h={HEIGHT}>
-					<Tasks />
+					<Tasks title="Tasks" />
 				</Grid.Col>
 				<Grid.Col span={3} h={HEIGHT}>
-					<Alerts />
+					<Alerts title="Alerts" />
 				</Grid.Col>
 				<Grid.Col span={3} h={HEIGHT}>
-					<TicTacToe />
+					<TicTacToe title="Tic-Tac-Toe" />
 				</Grid.Col>
 			</Grid>
 		</>
