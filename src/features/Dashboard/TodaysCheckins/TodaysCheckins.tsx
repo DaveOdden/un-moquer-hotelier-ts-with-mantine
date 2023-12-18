@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Loader } from '@mantine/core'
 import dayjs from 'dayjs'
 
 import { useGuests } from 'src/hooks/useGuestsQuery'
@@ -32,6 +33,9 @@ export const TodaysCheckinsContent: React.FC<{ title: string; checkedIn: boolean
 	}
 	const openModal = () => setModalOpened(true)
 	const closeModal = () => setModalOpened(false)
+
+	if (guests.isLoading || rooms.isLoading || todaysBookings.isLoading) return <Loader />
+	if (guests.isLoading || rooms.isLoading || todaysBookings.isLoading) return <>Error</>
 
 	return (
 		<>

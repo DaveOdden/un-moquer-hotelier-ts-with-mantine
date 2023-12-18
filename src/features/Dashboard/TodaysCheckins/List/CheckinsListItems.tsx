@@ -26,7 +26,7 @@ export const CheckinsListItems: React.FC<{
 						<Text fw={500} c="dimmed" size="sm" lineClamp={1}>
 							{checkinRecord.guest.fullName}
 						</Text>
-						<Title order={2} className={classes.listItemTitle} c="dark.5">
+						<Title order={2} className={classes.listItemTitle} c="dark.4">
 							{dayjs(checkinRecord.checkinDate).format('h:mm a')}
 						</Title>
 					</Stack>

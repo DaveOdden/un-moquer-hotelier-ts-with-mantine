@@ -16,6 +16,7 @@ export interface IAggregatedBooking {
 		days: number
 		additional: number
 	}
+	wakeUpCalls?: IWakeUpCall[]
 	checkinDateReadable?: string
 	checkoutDateReadable?: string
 }
@@ -32,6 +33,13 @@ export interface IBooking {
 		days: number
 		additional: number
 	}
+	wakeUpCalls?: IWakeUpCall[]
+}
+
+interface IWakeUpCall {
+	time: string
+	dates: string[]
+	notes: string
 }
 
 export interface IGuest {
@@ -83,4 +91,16 @@ export interface IHistory {
 	data?: any
 	by: string
 	date?: string | Date | Dayjs
+}
+
+export interface ITask {
+	_id: string
+	title: string
+	note: string
+	isCompleted: boolean
+	dateAdded: string
+	dateDue: string
+	assignedTo: string
+	createdBy: string
+	lastUpdated?: string
 }

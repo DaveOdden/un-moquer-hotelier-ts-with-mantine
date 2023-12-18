@@ -35,12 +35,6 @@ export const findMatchesByKey = (record: IGuest, filterOption: string) => {
 		return false
 	let todaysDate = formatToYMD(new Date())
 
-	console.log('')
-	console.log('findMatchesByKey')
-	console.log(record)
-	console.log(todaysDate)
-	console.log(datesOfStay?.includes(todaysDate))
-
 	switch (filterOption) {
 		case 'occupants':
 			return datesOfStay?.includes(todaysDate)

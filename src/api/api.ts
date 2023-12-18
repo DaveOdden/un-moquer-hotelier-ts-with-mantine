@@ -59,6 +59,7 @@ export const apiPaths = {
 	roomByAvailability: '/getRoomsByAvailability',
 	settings: '/settings',
 	checkin: '/checkIn',
+	tasks: '/tasks',
 }
 
 interface ApiConfig {
