@@ -2,7 +2,7 @@ import { ActionIcon } from '@mantine/core'
 import { IconAlertTriangle, IconMoonStars, IconSunset2 } from '@tabler/icons-react'
 import dayjs from 'dayjs'
 
-export const StatusCircle: React.FC<{ checkinDateTime: string }> = ({ checkinDateTime }) => {
+export const NotCheckedInIcon: React.FC<{ checkinDateTime: string }> = ({ checkinDateTime }) => {
 	const isNight = dayjs(checkinDateTime).isAfter(
 		dayjs().set('hour', 17).set('minute', 0).set('second', 0),
 		'hour'
