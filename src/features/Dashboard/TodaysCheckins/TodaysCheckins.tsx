@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { asDashboardCard } from '../asDashboardCard'
-import { getAdditionalDataForEachBooking } from 'src/features/Bookings/utils'
 import dayjs from 'dayjs'
 
 import { useGuests } from 'src/hooks/useGuestsQuery'
 import { useRooms } from 'src/hooks/useRoomsQuery'
 import { useTodaysBookings } from 'src/hooks/useBookingsQuery'
+import { asDashboardCard } from '../asDashboardCard'
+import { getAdditionalDataForEachBooking } from 'src/features/Bookings/utils'
 import { CheckinsListEmpty } from './Empty/CheckinsListEmpty'
 import { CheckinsList } from './List/CheckinsListContainer'
 import { CheckinModal } from './Modal/CheckinModal'

@@ -1,22 +1,20 @@
+import { getAdditionalDataForEachBooking } from 'src/features/Bookings/utils'
 import { Text, Box, Stack } from '@mantine/core'
-import filter from 'lodash/filter'
-
+import { useAllFeatures } from 'src/hooks/useAllQuery'
 import { asDashboardCard } from '../asDashboardCard'
-import { useGuests } from 'src/hooks/useGuestsQuery'
-import { findMatchesByKey } from 'src/features/Guests/utils'
 
 export const OccupantsContent = () => {
-	const guests = useGuests()
-	const occupants = filter(guests.data, (record: any) => findMatchesByKey(record, 'occupants'))
+	const [guests, bookigns, rooms] = useAllFeatures()
+	const aggregatedData = getAdditionalDataForEachBooking(guests, bookigns, rooms)
+	const checkedInBookings = aggregatedData.filter((obj: any) => obj.checkedIn === true)
 
 	return (
 		<Box px="md">
-			{occupants.map((occupant) => {
-				console.log(occupant)
+			{checkedInBookings.map((booking) => {
 				return (
-					<Stack key={occupant._id} justify="flex-start" gap={0} align="flex-start">
+					<Stack key={booking.guest._id} justify="flex-start" gap={0} align="flex-start">
 						<Text fw={500} c="dimmed" size="sm">
-							{occupant.fullName}
+							{booking.guest.fullName}
 						</Text>
 					</Stack>
 				)
