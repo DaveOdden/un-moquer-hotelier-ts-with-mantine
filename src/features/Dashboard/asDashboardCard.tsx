@@ -3,7 +3,6 @@ import classes from './Dashboard.module.css'
 
 export const asDashboardCard = (Component: any) => {
 	return (props: any) => {
-		console.log(props)
 		return (
 			<Card
 				shadow="sm"

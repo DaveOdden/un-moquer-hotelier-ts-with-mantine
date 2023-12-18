@@ -112,6 +112,7 @@ export const useCheckIn = () => {
 		},
 		onSettled: async () => {
 			queryClient.invalidateQueries({ queryKey: ['todaysbookings'] })
+			queryClient.invalidateQueries({ queryKey: ['bookings'] })
 		},
 	})
 }
