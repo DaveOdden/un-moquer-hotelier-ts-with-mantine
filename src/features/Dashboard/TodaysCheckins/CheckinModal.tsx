@@ -25,9 +25,11 @@ export const Checkin = (props: NewGuestProps) => {
 	}
 
 	const handleSuccess = (values: any) => {
+		console.log(values)
 		notifications.show({
-			title: 'Guest Added',
-			message: `${values.firstName} ${values.lastName} is now a guest`,
+			color: 'green',
+			title: 'Guest Checked In',
+			message: `${record.guest.fullName} staying in room ${record.room.roomNum}`,
 		})
 		setTimeout(() => {
 			setIsLoading(false)
