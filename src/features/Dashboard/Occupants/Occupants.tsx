@@ -2,12 +2,15 @@ import { getAdditionalDataForEachBooking } from 'src/features/Bookings/utils'
 import { Loader, ScrollArea, Card, Text, Stack } from '@mantine/core'
 import { useAllFeatures } from 'src/hooks/useAllQuery'
 import { asDashboardCard } from '../asDashboardCard'
+import { IAggregatedBooking } from 'src/utils/types'
 import classes from './Occupants.module.css'
 
-export const OccupantsContent = () => {
+export const OccupantsContent: React.FC<{}> = () => {
 	const [guests, bookings, rooms] = useAllFeatures()
 	const aggregatedData = getAdditionalDataForEachBooking(guests, bookings, rooms)
-	const checkedInBookings = aggregatedData.filter((obj: any) => obj.checkedIn === true)
+	const checkedInBookings = aggregatedData.filter(
+		(obj: IAggregatedBooking) => obj.checkedIn === true
+	)
 
 	if (bookings.isLoading) return <Loader />
 	if (bookings.isError) return <>Error</>

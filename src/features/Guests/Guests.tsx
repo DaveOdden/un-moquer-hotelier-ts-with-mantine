@@ -7,12 +7,13 @@ import { GuestDetail } from './GuestDetail'
 import { NewGuest } from './NewGuest'
 import classes from './Guests.module.css'
 
-export const Guests = () => {
+export const Guests: React.FC = () => {
 	const [drawerOpened, setDrawerOpen] = useState(false)
 	const [singleGuest, setSingleGuest] = useState('')
 	const [modalOpened, setModalOpened] = useState(false)
 	const [filteredText, setFilteredText] = useState('')
 	const [filterOption, setFilterOption] = useState('all')
+	const [drawerSize, setDrawerSize] = useState('md')
 
 	const closeDetail = () => setDrawerOpen(false)
 	const openModal = () => setModalOpened(true)
@@ -72,8 +73,13 @@ export const Guests = () => {
 				searchQuery={filteredText}
 				filterOption={filterOption}
 			/>
-			<Drawer position="right" opened={drawerOpened} onClose={closeDetail} withCloseButton={false}>
-				<GuestDetail guestId={singleGuest} />
+			<Drawer
+				position="right"
+				size={drawerSize}
+				opened={drawerOpened}
+				onClose={closeDetail}
+				withCloseButton={false}>
+				<GuestDetail guestId={singleGuest} setDrawerSize={setDrawerSize} />
 			</Drawer>
 			<Modal
 				size={500}

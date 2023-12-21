@@ -19,6 +19,7 @@ export interface IAggregatedBooking {
 	wakeUpCalls?: IWakeUpCall[]
 	checkinDateReadable?: string
 	checkoutDateReadable?: string
+	checkedIn: boolean
 }
 
 export interface IBooking {
@@ -34,6 +35,7 @@ export interface IBooking {
 		additional: number
 	}
 	wakeUpCalls?: IWakeUpCall[]
+	checkedIn: boolean
 }
 
 interface IWakeUpCall {
@@ -103,4 +105,12 @@ export interface ITask {
 	assignedTo: string
 	createdBy: string
 	lastUpdated?: string
+}
+
+export interface ApiPayload {
+	[key: string | number]: any
+}
+
+export type IResponse = {
+	message: Array<any>
 }

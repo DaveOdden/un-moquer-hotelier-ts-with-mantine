@@ -2,11 +2,12 @@ import { Group, Card, Stack, Text, Button, Title } from '@mantine/core'
 import dayjs from 'dayjs'
 
 import { ListItemIcon } from './Components/ListItemIcon'
+import { IAggregatedBooking } from 'src/utils/types'
 import classes from '../TodaysCheckins.module.css'
 
 export const CheckinsListItems: React.FC<{
-	checkinRecord: any
-	initializeModal(record: any): void
+	checkinRecord: IAggregatedBooking
+	initializeModal(record: IAggregatedBooking): void
 }> = ({ checkinRecord, initializeModal }) => {
 	return (
 		<Card

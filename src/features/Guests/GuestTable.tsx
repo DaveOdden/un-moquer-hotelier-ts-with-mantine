@@ -7,8 +7,11 @@ import filter from 'lodash/filter'
 import { findMatches, findMatchesByKey } from './utils'
 import { TABLE_HEIGHT } from 'src/utils/constants'
 
-export const GuestTable = (props: GuestTableProps) => {
-	const { showGuestDetail, searchQuery, filterOption } = props
+export const GuestTable: React.FC<GuestTableProps> = ({
+	showGuestDetail,
+	searchQuery,
+	filterOption,
+}) => {
 	const guests = useGuests()
 	const [sortStatus, setSortStatus] = useState<DataTableSortStatus<any>>({
 		columnAccessor: 'lastName',

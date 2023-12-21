@@ -66,7 +66,7 @@ export const convertFormDataForAPI = (formData: any) => {
 			zip: formData.zip,
 		},
 		currentlyAssignedRoom: '',
-		status: 'good',
+		status: formData.status,
 		storedCreditCard: {},
 		history: [],
 		signUpDate: new Date(),

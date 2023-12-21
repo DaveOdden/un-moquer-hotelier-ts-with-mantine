@@ -1,4 +1,5 @@
 import dayjs, { Dayjs } from 'dayjs'
+import { HOURS_TILL_NO_SHOW } from 'src/utils/constants'
 
 export const phoneFormat = (input: string) => {
 	//returns (###) ###-####
@@ -34,4 +35,8 @@ export const isFutureDate = (date1: Dayjs | string | Date, date2: Dayjs | string
 
 export const isSame = (date1: Dayjs | string | Date, date2: Dayjs | string | Date) => {
 	return dayjs(date1).isSame(dayjs(date2))
+}
+
+export const guestIsLate = (date1: Dayjs | string | Date) => {
+	dayjs(date1).isAfter(dayjs().add(HOURS_TILL_NO_SHOW, 'hour'))
 }

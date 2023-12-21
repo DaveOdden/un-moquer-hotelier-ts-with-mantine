@@ -6,7 +6,7 @@ import { IAggregatedBooking } from 'src/utils/types'
 export const CallCard: React.FC<{ booking: IAggregatedBooking }> = ({ booking }) => {
 	return (
 		booking?.wakeUpCalls &&
-		booking?.wakeUpCalls.map((wakeupInfo) => (
+		booking.wakeUpCalls.map((wakeupInfo) => (
 			<Card
 				py="md"
 				px="lg"

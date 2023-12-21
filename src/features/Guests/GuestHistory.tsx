@@ -5,8 +5,7 @@ import { useGuest } from '../../hooks/useGuestsQuery'
 import { IHistory } from 'src/utils/types'
 import { GuestHistoryItem } from './GuestHistoryItem'
 
-export const GuestHistory = (props: renderProps) => {
-	const { guestId } = props
+export const GuestHistory: React.FC<IGuestHistory> = ({ guestId }) => {
 	const guest = useGuest(guestId)
 	const sortedHistory = sortBy(guest.history, 'date').reverse()
 
@@ -19,6 +18,6 @@ export const GuestHistory = (props: renderProps) => {
 	)
 }
 
-interface renderProps {
+interface IGuestHistory {
 	guestId: string
 }
