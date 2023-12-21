@@ -1,30 +1,31 @@
 import { useState } from 'react'
-import { Alert, TextInput, InputBase, Button, Group, Box } from '@mantine/core'
+import { Alert, TextInput, InputBase, Button, Group, Box, Select } from '@mantine/core'
 import { useForm, isNotEmpty, hasLength, isEmail } from '@mantine/form'
 import { IMaskInput } from 'react-imask'
 import { notifications } from '@mantine/notifications'
 
 import { useCreateGuest } from '../../hooks/useGuestsQuery'
 import { convertFormDataForAPI } from './utils'
+import { IGuest } from 'src/utils/types'
 
-export const NewGuest = (props: NewGuestProps) => {
-	const { closeModal } = props
+export const NewGuest: React.FC<NewGuestProps> = ({ closeModal }) => {
 	const { mutate: addGuest } = useCreateGuest()
 	const [isLoading, setIsLoading] = useState(false)
 	const [hasError, setHasError] = useState(false)
 
-	const submitForm = (values: any) => {
+	const submitForm = (formData: IGuest) => {
 		setIsLoading(true)
-		addGuest(convertFormDataForAPI(values), {
-			onSuccess: (values) => handleSuccess(values),
+		addGuest(convertFormDataForAPI(formData), {
+			onSuccess: () => handleSuccess(formData),
 			onError: handleError,
 		})
 	}
 
-	const handleSuccess = (values: any) => {
+	const handleSuccess = (formData: IGuest) => {
 		notifications.show({
 			title: 'Guest Added',
-			message: `${values.firstName} ${values.lastName} is now a guest`,
+			message: `${formData.firstName} ${formData.lastName} is now a guest`,
+			color: 'green',
 		})
 		setTimeout(() => {
 			setIsLoading(false)
@@ -42,7 +43,20 @@ export const NewGuest = (props: NewGuestProps) => {
 	const resetError = () => setHasError(false)
 
 	const form = useForm({
-		initialValues: {},
+		initialValues: {
+			firstName: '',
+			lastName: '',
+			email: '',
+			phone: '',
+			dob: '',
+			licenseNumber: '',
+			address1: '',
+			address2: '',
+			state: '',
+			city: '',
+			zip: '',
+			status: 'good',
+		},
 		validate: {
 			firstName: isNotEmpty('First Name Required'),
 			lastName: isNotEmpty('Last Name Required'),
@@ -118,7 +132,7 @@ export const NewGuest = (props: NewGuestProps) => {
 					placeholder="Apt. 3"
 					{...form.getInputProps('address2')}
 				/>
-				<Group wrap="nowrap" mb="xl">
+				<Group wrap="nowrap" mb="md">
 					<TextInput
 						label="City"
 						placeholder="Georgetown"
@@ -141,6 +155,18 @@ export const NewGuest = (props: NewGuestProps) => {
 						mask="00000"
 						placeholder="61602"
 						{...form.getInputProps('zip')}
+					/>
+				</Group>
+				<Group mb="xl">
+					<Select
+						name="status"
+						label="Guest Status"
+						placeholder="Pick value"
+						data={[
+							{ label: 'In Good Standing', value: 'good' },
+							{ label: 'Banned', value: 'banned' },
+						]}
+						{...form.getInputProps('status')}
 					/>
 				</Group>
 				{hasError && (

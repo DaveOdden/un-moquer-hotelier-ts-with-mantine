@@ -1,17 +1,10 @@
 import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query'
+import { IResponse, ApiPayload, IGuest } from 'src/utils/types'
 import { api, apiPaths } from 'src/api/api'
-
-interface ApiPayload {
-	[key: string | number]: any
-}
-
-type ResponseData = {
-	message: Array<any>
-}
 
 export const useGuest = (id: string) => {
 	const queryClient = useQueryClient()
-	return queryClient.getQueryData<Array<any>>(['guests'])?.find((d: any) => d._id === id)
+	return queryClient.getQueryData<Array<IGuest>>(['guests'])?.find((d: IGuest) => d._id === id)
 }
 
 export const useGuests = () => {
@@ -23,7 +16,7 @@ export const useGuests = () => {
 					method: 'GET',
 					endpoint: apiPaths.guests,
 				})
-				.then((res: ResponseData) => res.message),
+				.then((res: IResponse) => res.message),
 	})
 }
 
@@ -36,7 +29,7 @@ export const useGuestAutoComplete = () => {
 					method: 'GET',
 					endpoint: apiPaths.autocompleteGuests,
 				})
-				.then((res: ResponseData) => res.message),
+				.then((res: IResponse) => res.message),
 	})
 }
 
@@ -59,7 +52,7 @@ export const useCreateGuest = () => {
 export const useUpdateGuest = () => {
 	const queryClient = useQueryClient()
 	return useMutation({
-		mutationFn: (data: any) => {
+		mutationFn: (data: { id: string; payload: ApiPayload }) => {
 			return api.request({
 				method: 'PUT',
 				endpoint: apiPaths.guests,

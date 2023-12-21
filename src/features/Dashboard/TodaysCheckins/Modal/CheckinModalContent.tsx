@@ -1,31 +1,29 @@
 import { useState } from 'react'
-import { Button, Center, Text, Flex, ActionIcon } from '@mantine/core'
+import { Alert, Button, Center, Text, Flex, ActionIcon } from '@mantine/core'
 import { notifications } from '@mantine/notifications'
 import { IconTransferIn } from '@tabler/icons-react'
 import dayjs from 'dayjs'
-import { useCheckIn } from 'src/hooks/useBookingsQuery'
 
-export const Checkin = (props: NewGuestProps) => {
-	const { record, closeModal } = props
+import { useCheckIn } from 'src/hooks/useBookingsQuery'
+import { IAggregatedBooking } from 'src/utils/types'
+
+export const Checkin: React.FC<ICheckin> = ({ record, closeModal }) => {
 	const { mutate: checkInGuest } = useCheckIn()
 	const [isLoading, setIsLoading] = useState(false)
 	const [hasError, setHasError] = useState(false)
-	console.log(isLoading)
-	console.log(hasError)
 
 	const checkIn = () => {
 		setIsLoading(true)
 		checkInGuest(
 			{ id: record._id, checkedIn: true },
 			{
-				onSuccess: (values) => handleSuccess(values),
+				onSuccess: handleSuccess,
 				onError: handleError,
 			}
 		)
 	}
 
-	const handleSuccess = (values: any) => {
-		console.log(values)
+	const handleSuccess = () => {
 		notifications.show({
 			color: 'green',
 			title: 'Guest Checked In',
@@ -64,15 +62,20 @@ export const Checkin = (props: NewGuestProps) => {
 				<Text size="sm" c="dimmed">
 					{record._id}
 				</Text>
-				<Button mt="lg" onClick={checkIn}>
+				<Button mt="lg" onClick={checkIn} loading={isLoading}>
 					Confirm Checkin
 				</Button>
+				{hasError && (
+					<Alert variant="light" color="red" title="API Error" mt="lg" withCloseButton>
+						Unable to check-in guest.
+					</Alert>
+				)}
 			</Flex>
 		</Center>
 	)
 }
 
-interface NewGuestProps {
-	record: any
+interface ICheckin {
+	record: IAggregatedBooking
 	closeModal(): void
 }

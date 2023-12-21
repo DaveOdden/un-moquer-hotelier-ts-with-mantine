@@ -10,9 +10,8 @@ declare global {
 
 Object.typedKeys = Object.keys as any
 
-// REPLACE ANY WITH IBOOKING
-export const findMatches = (record: any, searchQuery: string) => {
-	return Object.typedKeys(record).some((k: keyof any) => {
+export const findMatches = (record: IBooking, searchQuery: string) => {
+	return Object.typedKeys(record).some((k: keyof IBooking) => {
 		if (record && record[k]) {
 			return (record[k] as string).toString().toLowerCase().includes(searchQuery.toLowerCase())
 		}

@@ -2,10 +2,7 @@ import { Stack, Flex, Text, Title, ThemeIcon } from '@mantine/core'
 import { IconReceiptOff } from '@tabler/icons-react'
 import dayjs from 'dayjs'
 
-export const CheckinsListEmpty: React.FC<{ isShown: boolean; checkedIn: boolean }> = ({
-	isShown,
-	checkedIn,
-}) => {
+export const CheckinsListEmpty: React.FC<ICheckinsListEmpty> = ({ isShown, checkedIn }) => {
 	return (
 		isShown && (
 			<Flex h="100%" mt="-lg" justify="center" align="center">
@@ -23,4 +20,9 @@ export const CheckinsListEmpty: React.FC<{ isShown: boolean; checkedIn: boolean 
 			</Flex>
 		)
 	)
+}
+
+interface ICheckinsListEmpty {
+	isShown: boolean
+	checkedIn: boolean
 }

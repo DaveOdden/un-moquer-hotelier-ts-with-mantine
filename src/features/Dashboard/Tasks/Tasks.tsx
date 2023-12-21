@@ -1,6 +1,6 @@
 import { Loader, Switch, ScrollArea, Group, Card, Stack, Text, Checkbox, Flex } from '@mantine/core'
 
-import { ITask } from 'src/utils/types'
+import { ITask, IResponse } from 'src/utils/types'
 import { asDashboardCard } from '../asDashboardCard'
 import { useTasks, useUpdateTask } from 'src/hooks/useTasksQuery'
 import { useLocalStorage } from 'src/hooks/useLocalStorage'
@@ -20,7 +20,7 @@ export const TasksContent: React.FC<{}> = () => {
 	const toggleTaskCompleted = (id: string, isCompleted: boolean) =>
 		setTaskCompletion(id, isCompleted)
 
-	const setTaskCompletion = (id: string, isCompleted: any) => {
+	const setTaskCompletion = (id: string, isCompleted: boolean) => {
 		let payload = {
 			id: id,
 			isCompleted: isCompleted,
@@ -31,7 +31,7 @@ export const TasksContent: React.FC<{}> = () => {
 		})
 	}
 
-	const onUpdateSettled = (response: any) => {
+	const onUpdateSettled = (response: IResponse) => {
 		console.log(response)
 	}
 

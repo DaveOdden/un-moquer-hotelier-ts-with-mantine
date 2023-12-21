@@ -4,8 +4,9 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { IconGitBranch } from '@tabler/icons-react'
 
-export const GuestHistoryItem = (props: renderProps) => {
-	const { entry } = props
+import { IHistory } from 'src/utils/types'
+
+export const GuestHistoryItem: React.FC<IGuestHistoryItem> = ({ entry }) => {
 	const [opened, { close, open }] = useDisclosure(false)
 
 	dayjs.extend(relativeTime)
@@ -36,6 +37,6 @@ export const GuestHistoryItem = (props: renderProps) => {
 	)
 }
 
-interface renderProps {
-	entry: any
+interface IGuestHistoryItem {
+	entry: IHistory
 }

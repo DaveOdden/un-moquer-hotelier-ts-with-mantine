@@ -9,6 +9,16 @@ import { WakeUpCalls } from './WakeUpCalls/WakeUpCalls'
 import { Occupants } from './Occupants/Occupants'
 
 const HEIGHT = 365
+const gridComponents = [
+	<TodaysCheckins title="Today's Checkins" checkedIn={true} />,
+	<TodaysCheckins title="Scheduled Checkins" checkedIn={false} />,
+	<NoShows title="No Shows" />,
+	<WakeUpCalls title="Wake-up Calls" />,
+	<Occupants title="Occupants" />,
+	<Tasks title="Tasks" />,
+	<Alerts title="Alerts" />,
+	<TicTacToe title="Tic-Tac-Toe" />,
+]
 
 export const Dashboard: React.FC<{}> = () => {
 	return (
@@ -17,30 +27,11 @@ export const Dashboard: React.FC<{}> = () => {
 				<h1>Dashboard</h1>
 			</Flex>
 			<Grid>
-				<Grid.Col span={3} h={HEIGHT}>
-					<TodaysCheckins title="Today's Checkins" checkedIn={true} />
-				</Grid.Col>
-				<Grid.Col span={3} h={HEIGHT}>
-					<TodaysCheckins title="Scheduled Checkins" checkedIn={false} />
-				</Grid.Col>
-				<Grid.Col span={3} h={HEIGHT}>
-					<NoShows title="No Shows" />
-				</Grid.Col>
-				<Grid.Col span={3} h={HEIGHT}>
-					<WakeUpCalls title="Wake-up Calls" />
-				</Grid.Col>
-				<Grid.Col span={3} h={HEIGHT}>
-					<Occupants title="Occupants" />
-				</Grid.Col>
-				<Grid.Col span={3} h={HEIGHT}>
-					<Tasks title="Tasks" />
-				</Grid.Col>
-				<Grid.Col span={3} h={HEIGHT}>
-					<Alerts title="Alerts" />
-				</Grid.Col>
-				<Grid.Col span={3} h={HEIGHT}>
-					<TicTacToe title="Tic-Tac-Toe" />
-				</Grid.Col>
+				{gridComponents.map((Component) => (
+					<Grid.Col span={3} h={HEIGHT}>
+						{Component}
+					</Grid.Col>
+				))}
 			</Grid>
 		</>
 	)
