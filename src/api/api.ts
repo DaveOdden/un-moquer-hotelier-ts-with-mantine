@@ -4,7 +4,8 @@ const apiKey = import.meta.env.VITE_VERCEL_API_KEY
 const isRegularGetRequest = (config: ApiConfig) =>
 	config.method === 'GET' && config.payload == undefined && config.id === undefined
 const isGetRequestWithPayload = (config: ApiConfig) => config.method === 'GET' && config.payload
-const prependQuestionMark = (string: string) => '?' + string.substring(1, string.length)
+const prependQuestionMark = (string: string) => `?` + string.substring(1, string.length)
+const getBrowserUtcOffset = () => new Date().getTimezoneOffset().toString()
 
 const dynamicallyAssembleQueryStringPartial = (payload: ApiPayload | undefined) => {
 	let partialQueryString = ''
@@ -19,7 +20,7 @@ const dynamicallyAssembleQueryStringPartial = (payload: ApiPayload | undefined) 
 const assembleQueryString = (config: ApiConfig) => {
 	let queryString = ''
 
-	if (isRegularGetRequest(config)) return ''
+	if (isRegularGetRequest(config)) return `?utcOffset=${getBrowserUtcOffset()}`
 
 	if (isGetRequestWithPayload(config))
 		queryString += dynamicallyAssembleQueryStringPartial(config.payload)
@@ -39,10 +40,7 @@ export const api = {
 				Authorization: apiKey,
 			}),
 		})
-		if (response.status === 200) {
-			let jsonResponse = await response.json()
-			return jsonResponse
-		}
+		if (response.status === 200) return await response.json()
 		return response
 	},
 }
