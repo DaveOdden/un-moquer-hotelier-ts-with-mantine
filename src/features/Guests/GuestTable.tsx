@@ -23,7 +23,9 @@ export const GuestTable: React.FC<GuestTableProps> = ({
 	let sortedAndFilteredData = filter(records, (record) => findMatches(record, searchQuery))
 
 	if (filterOption !== 'all') {
-		sortedAndFilteredData = filter(records, (record) => findMatchesByKey(record, filterOption))
+		sortedAndFilteredData = filter(sortedAndFilteredData, (record) =>
+			findMatchesByKey(record, filterOption)
+		)
 	}
 
 	if (guests.isPending)
