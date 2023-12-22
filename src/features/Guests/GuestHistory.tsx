@@ -7,7 +7,7 @@ import { GuestHistoryItem } from './GuestHistoryItem'
 
 export const GuestHistory: React.FC<IGuestHistory> = ({ guestId }) => {
 	const guest = useGuest(guestId)
-	const sortedHistory = sortBy(guest.history, 'date').reverse()
+	const sortedHistory = sortBy(guest?.history, 'date').reverse() as IHistory[]
 
 	return (
 		<Timeline bulletSize={24} lineWidth={2}>

@@ -6,7 +6,7 @@ import { IconGitBranch } from '@tabler/icons-react'
 
 import { IHistory } from 'src/utils/types'
 
-export const GuestHistoryItem: React.FC<IGuestHistoryItem> = ({ entry }) => {
+export const GuestHistoryItem: React.FC<Partial<IGuestHistoryItem>> = ({ entry }) => {
 	const [opened, { close, open }] = useDisclosure(false)
 
 	dayjs.extend(relativeTime)
@@ -16,21 +16,21 @@ export const GuestHistoryItem: React.FC<IGuestHistoryItem> = ({ entry }) => {
 			<Popover.Target>
 				<Timeline.Item
 					bullet={<IconGitBranch size={12} />}
-					title={entry.action}
+					title={entry?.action}
 					onMouseEnter={open}
 					onMouseLeave={close}>
 					<Text c="dimmed" size="xs" mt={4}>
-						{dayjs().to(dayjs(entry.date))}
+						{dayjs().to(dayjs(entry?.date))}
 						<Text px="xs" span>
 							|
 						</Text>
-						by {entry.by}
+						by {entry?.by}
 					</Text>
 				</Timeline.Item>
 			</Popover.Target>
 			<Popover.Dropdown style={{ pointerEvents: 'none' }}>
 				<Code block style={{ whiteSpace: 'pre-line' }}>
-					{JSON.stringify(entry.data)}
+					{JSON.stringify(entry?.data)}
 				</Code>
 			</Popover.Dropdown>
 		</Popover>
