@@ -31,7 +31,7 @@ export const GuestDetail: React.FC<{
 		<Card className={classes.detail}>
 			<Group justify="space-between">
 				<Box>
-					{guest?.status.toLowerCase() === 'banned' && <Badge color="red">Banned</Badge>}
+					{guest?.status?.toLowerCase() === 'banned' && <Badge color="red">Banned</Badge>}
 					<h2>
 						{guest?.firstName} {guest?.lastName}
 					</h2>
@@ -96,12 +96,12 @@ export const GuestDetail: React.FC<{
 						<Text size="sm" c="dimmed" fw={400}>
 							Address
 						</Text>
-						<Text>{guest?.address.address1}</Text>
-						<Text>{guest?.address.address2}</Text>
+						<Text>{guest?.address?.address1}</Text>
+						<Text>{guest?.address?.address2}</Text>
 						<Text>
-							{guest?.address.city} {guest?.address.state}
+							{guest?.address?.city} {guest?.address?.state}
 							{', '}
-							{guest?.address.zip}
+							{guest?.address?.zip}
 						</Text>
 					</List.Item>
 					<Divider my="md" />
@@ -113,12 +113,12 @@ export const GuestDetail: React.FC<{
 					</List.Item>
 				</List>
 			</Box>
-			{guest?.history.length > 0 && (
+			{guest && guest._id && guest.history && guest.history.length > 0 && (
 				<Accordion variant="contained">
 					<Accordion.Item value="photos">
 						<Accordion.Control>Guest History</Accordion.Control>
 						<Accordion.Panel pt="lg">
-							<GuestHistory guestId={guest?._id} />
+							<GuestHistory guestId={guest._id} />
 						</Accordion.Panel>
 					</Accordion.Item>
 				</Accordion>

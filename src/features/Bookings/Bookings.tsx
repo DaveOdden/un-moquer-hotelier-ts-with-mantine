@@ -3,8 +3,6 @@ import { Flex, Modal, TextInput, Drawer, Button } from '@mantine/core'
 import { IconPlus } from '@tabler/icons-react'
 
 import { BookingsTable } from './BookingsTable'
-// import { GuestDetail } from './GuestDetail'
-// import { NewGuest } from './NewGuest'
 import classes from './Bookings.module.css'
 
 export const Bookings = () => {
@@ -38,17 +36,13 @@ export const Bookings = () => {
 				position="right"
 				opened={singleGuest !== ''}
 				onClose={closeDetail}
-				withCloseButton={false}>
-				{/* <GuestDetail guestId={singleGuest} /> */}
-			</Drawer>
+				withCloseButton={false}></Drawer>
 			<Modal
 				size={500}
 				opened={modalOpened}
 				onClose={closeModal}
 				title={<span className={classes.modalTitle}>New Guest</span>}
-				transitionProps={{ transition: 'pop-top-right' }}>
-				{/* <NewGuest closeModal={closeModal} /> */}
-			</Modal>
+				transitionProps={{ transition: 'pop-top-right' }}></Modal>
 		</>
 	)
 }

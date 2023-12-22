@@ -70,7 +70,8 @@ export interface IMemberInfo {
 }
 
 export interface IGuestAddress {
-	street: string
+	address1: string
+	address2: string
 	city: string
 	state: string
 	zip: string
@@ -92,7 +93,7 @@ export interface IHistory {
 	action: string
 	data?: any
 	by: string
-	date?: string | Date | Dayjs
+	date: string | Date | Dayjs
 }
 
 export interface ITask {

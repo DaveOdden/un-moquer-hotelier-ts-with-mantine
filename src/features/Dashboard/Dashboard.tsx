@@ -28,7 +28,7 @@ export const Dashboard: React.FC<{}> = () => {
 			</Flex>
 			<Grid>
 				{gridComponents.map((Component) => (
-					<Grid.Col span={3} h={HEIGHT}>
+					<Grid.Col key={Component.props.title} span={3} h={HEIGHT}>
 						{Component}
 					</Grid.Col>
 				))}

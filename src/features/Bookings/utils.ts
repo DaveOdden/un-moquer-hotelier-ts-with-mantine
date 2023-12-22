@@ -10,7 +10,7 @@ declare global {
 
 Object.typedKeys = Object.keys as any
 
-export const findMatches = (record: IBooking, searchQuery: string) => {
+export const findMatches = (record: IBooking | IAggregatedBooking, searchQuery: string) => {
 	return Object.typedKeys(record).some((k: keyof IBooking) => {
 		if (record && record[k]) {
 			return (record[k] as string).toString().toLowerCase().includes(searchQuery.toLowerCase())
