@@ -5,7 +5,6 @@ const isRegularGetRequest = (config: ApiConfig) =>
 	config.method === 'GET' && config.payload == undefined && config.id === undefined
 const isGetRequestWithPayload = (config: ApiConfig) => config.method === 'GET' && config.payload
 const prependQuestionMark = (string: string) => `?` + string.substring(1, string.length)
-const getBrowserUtcOffset = () => new Date().getTimezoneOffset().toString()
 
 const dynamicallyAssembleQueryStringPartial = (payload: ApiPayload | undefined) => {
 	let partialQueryString = ''
@@ -20,7 +19,7 @@ const dynamicallyAssembleQueryStringPartial = (payload: ApiPayload | undefined) 
 const assembleQueryString = (config: ApiConfig) => {
 	let queryString = ''
 
-	if (isRegularGetRequest(config)) return `?utcOffset=${getBrowserUtcOffset()}`
+	if (isRegularGetRequest(config)) return ''
 
 	if (isGetRequestWithPayload(config))
 		queryString += dynamicallyAssembleQueryStringPartial(config.payload)
