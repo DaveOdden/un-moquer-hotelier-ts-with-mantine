@@ -37,5 +37,6 @@ export const isSame = (date1: Dayjs | string | Date, date2: Dayjs | string | Dat
 }
 
 export const guestIsLate = (date1: Dayjs | string | Date) => {
-	dayjs(date1).isAfter(dayjs().add(HOURS_TILL_NO_SHOW, 'hour'))
+	const checkinPlusTime = dayjs(date1).add(HOURS_TILL_NO_SHOW)
+	return dayjs().isAfter(checkinPlusTime, 'hour')
 }
