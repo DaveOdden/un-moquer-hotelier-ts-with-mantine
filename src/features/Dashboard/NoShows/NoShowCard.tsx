@@ -1,7 +1,10 @@
 import { Card, Text, Stack } from '@mantine/core'
 import { IAggregatedBooking } from 'src/utils/types'
 
-export const NoShowCard: React.FC<{ booking: IAggregatedBooking }> = ({ booking }) => {
+export const NoShowCard: React.FC<{
+	booking: IAggregatedBooking
+	showCheckInModal(record: IAggregatedBooking): void
+}> = ({ booking }) => {
 	return (
 		<Card
 			py="md"

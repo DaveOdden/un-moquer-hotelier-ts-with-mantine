@@ -1,28 +1,37 @@
-import { Loader, ScrollArea } from '@mantine/core'
+import { useState } from 'react'
+import { Loader } from '@mantine/core'
 
 import { useAllFeatures } from 'src/hooks/useAllQuery'
 import { asDashboardCard } from '../asDashboardCard'
-import { CallCard } from './CallCard'
 import { getAdditionalDataForEachBooking } from 'src/features/Bookings/utils'
 import { IAggregatedBooking } from 'src/utils/types'
-import classes from './WakeUpCalls.module.css'
+import { WakeupCallListEmpty } from './Empty/WakeupCallListEmpty'
+import { WakeupCallList } from './List/WakeupCallList'
+import { WakeupCallModal } from './Modal/WakeupCallModal'
 
 const WakeUpCallsContent: React.FC<{ title: string }> = () => {
 	const [guests, bookings, rooms] = useAllFeatures()
+	const [modalOpened, setModalOpened] = useState<boolean>(false)
 	const aggregatedData = getAdditionalDataForEachBooking(guests, bookings, rooms)
 	const nonCheckedInBookings = aggregatedData.filter(
 		(singleBooking: IAggregatedBooking) => singleBooking.checkedIn === true
 	)
 
+	const initializeModal = (record: any) => {
+		openModal()
+	}
+	const openModal = () => setModalOpened(true)
+	const closeModal = () => setModalOpened(false)
+
 	if (guests.isLoading || rooms.isLoading || bookings.isLoading) return <Loader />
 	if (guests.isError || rooms.isError || bookings.isError) return <>Error</>
 
 	return (
-		<ScrollArea h="100%" className={classes.scrollArea}>
-			{nonCheckedInBookings.map((booking) => (
-				<CallCard key={booking._id} booking={booking} />
-			))}
-		</ScrollArea>
+		<>
+			<WakeupCallListEmpty isShown={nonCheckedInBookings.length === 0} />
+			<WakeupCallList listData={nonCheckedInBookings} showCheckInModal={initializeModal} />
+			<WakeupCallModal isOpen={modalOpened} closeModal={closeModal} data={{}} />
+		</>
 	)
 }
 export const WakeUpCalls = asDashboardCard(WakeUpCallsContent)
