@@ -45,6 +45,7 @@ export const api = {
 }
 
 export const apiPaths = {
+	alerts: '/alerts',
 	bookings: '/bookings',
 	bookingsByRoom: '/bookingsByRoom',
 	todaysBookings: '/bookingsOnToday',

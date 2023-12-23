@@ -115,3 +115,9 @@ export interface ApiPayload {
 export type IResponse = {
 	message: Array<any>
 }
+
+export interface IAlert {
+	_id: string
+	message: string
+	date?: string
+}
