@@ -2,7 +2,6 @@ import dayjs, { Dayjs } from 'dayjs'
 import { HOURS_TILL_NO_SHOW } from 'src/utils/constants'
 
 export const phoneFormat = (input: string) => {
-	//returns (###) ###-####
 	input = input.replace(/\D/g, '')
 	var size = input.length
 	if (size > 0) {
