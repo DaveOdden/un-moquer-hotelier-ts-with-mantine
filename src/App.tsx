@@ -22,8 +22,8 @@ export const App = () => {
 			</AppShell.Navbar>
 			<AppShell.Main>
 				<Routes>
-					<Route path="/" element={<MockLayout />}>
-						<Route index element={<h1>Test</h1>} />
+					<Route path="/" element={<Outlet />}>
+						<Route index element={<Dashboard />} />
 						<Route index path="overview" element={<Dashboard />} />
 						<Route path="bookings" element={<Bookings />} />
 						<Route path="guests" element={<Guests />} />
@@ -35,8 +35,4 @@ export const App = () => {
 			</AppShell.Main>
 		</AppShell>
 	)
-}
-
-function MockLayout() {
-	return <Outlet />
 }
