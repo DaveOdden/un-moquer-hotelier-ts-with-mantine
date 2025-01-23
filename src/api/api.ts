@@ -1,5 +1,7 @@
 const apiUrl = 'https://un-moquer-hotelier-api.vercel.app/api'
-const apiKey = import.meta.env.VITE_VERCEL_API_KEY
+const apiKey = process.env.VITE_VERCEL_API_KEY ?? ''
+const requestHeaders: HeadersInit = new Headers()
+requestHeaders.set('Authorization', apiKey)
 
 const isRegularGetRequest = (config: ApiConfig) =>
 	config.method === 'GET' && config.payload == undefined && config.id === undefined
@@ -35,9 +37,7 @@ export const api = {
 		const response = await fetch(`${apiUrl}${config.endpoint}${queryString}`, {
 			method: config.method,
 			body: config.payload && config.method !== 'GET' ? JSON.stringify(config.payload) : null,
-			headers: new Headers({
-				Authorization: apiKey,
-			}),
+			headers: requestHeaders,
 		})
 		if (response.status === 200) return await response.json()
 		return response

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { getAdditionalDataForEachBooking } from 'src/features/Bookings/utils'
-import { Loader, ScrollArea, Card, Text, Stack } from '@mantine/core'
+import { Loader } from '@mantine/core'
 
 import { useAllFeatures } from 'src/hooks/useAllQuery'
 import { asDashboardCard } from '../asDashboardCard'
@@ -17,8 +17,7 @@ export const OccupantsContent: React.FC<{}> = () => {
 		(obj: IAggregatedBooking) => obj.checkedIn === true
 	)
 
-	const initializeModal = (record: any) => {
-		// setCheckinRecord(record)
+	const initializeModal = () => {
 		openModal()
 	}
 	const openModal = () => setModalOpened(true)
