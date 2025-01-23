@@ -6,7 +6,7 @@ import classes from '../Occupants.module.css'
 export const OccupantsList: React.FC<{
 	listData: IAggregatedBooking[]
 	showCheckInModal(record: IAggregatedBooking): void
-}> = ({ listData, showCheckInModal }) => {
+}> = ({ listData }) => {
 	return (
 		listData.length > 0 && (
 			<ScrollArea h="100%" className={classes.scrollArea}>

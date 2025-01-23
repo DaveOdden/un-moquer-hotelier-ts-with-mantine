@@ -11,16 +11,19 @@ import { Settings } from './features/Settings/Settings'
 import { Rooms } from './features/Rooms/Rooms'
 import './App.css'
 
-const App = () => {
+export const App = () => {
 	return (
-		<AppShell navbar={{ width: 80, breakpoint: 'sm', collapsed: { mobile: false } }} padding="md">
+		<AppShell
+			navbar={{ width: 80, breakpoint: 'sm', collapsed: { mobile: false } }}
+			padding="md"
+			data-testid="app-shell">
 			<AppShell.Navbar>
 				<AppNav />
 			</AppShell.Navbar>
 			<AppShell.Main>
 				<Routes>
 					<Route path="/" element={<MockLayout />}>
-						<Route index element={<Dashboard />} />
+						<Route index element={<h1>Test</h1>} />
 						<Route index path="overview" element={<Dashboard />} />
 						<Route path="bookings" element={<Bookings />} />
 						<Route path="guests" element={<Guests />} />
@@ -37,5 +40,3 @@ const App = () => {
 function MockLayout() {
 	return <Outlet />
 }
-
-export default App

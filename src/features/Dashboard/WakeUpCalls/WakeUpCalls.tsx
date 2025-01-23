@@ -17,7 +17,7 @@ const WakeUpCallsContent: React.FC<{ title: string }> = () => {
 		(singleBooking: IAggregatedBooking) => singleBooking.checkedIn === true
 	)
 
-	const initializeModal = (record: any) => {
+	const initializeModal = () => {
 		openModal()
 	}
 	const openModal = () => setModalOpened(true)
